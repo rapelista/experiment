@@ -3,6 +3,7 @@
 import { Button, Group, Stack, Title } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import { Table } from '~/components/core/table';
+import { columns } from '~/components/dashboard/categories/columns';
 
 export default function Page() {
   return (
@@ -24,7 +25,7 @@ export default function Page() {
         </Button>
       </Group>
 
-      <Table />
+      <Table context="categories" columns={columns} />
     </Stack>
   );
 }

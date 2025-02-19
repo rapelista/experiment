@@ -1,10 +1,12 @@
 import { isServer, QueryClient } from '@tanstack/react-query';
+import { defaultApiFn } from '../core/api';
 
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
         staleTime: 60 * 1000,
+        queryFn: defaultApiFn,
       },
     },
   });

@@ -17,43 +17,24 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
-import { EntityType } from '~/types/core/entity';
+import { EntityType, PaginatedType } from '~/types/core/entity';
 
-type CategoryType = EntityType & {
-  name: string;
-};
-
-const columns: ColumnDef<CategoryType>[] = [
-  {
-    accessorKey: 'name',
-    header: 'Name',
-  },
-];
-
-async function fetchCategories(
-  params: Record<string, number>,
-): Promise<{ data: CategoryType[] }> {
-  const url = new URL('/');
-
-  url.pathname = '/api/v1/categories';
-  url.searchParams.append('page', String(params.page));
-  url.searchParams.append('limit', String(params.limit));
-
-  const res = await fetch(url.toString());
-  const data = await res.json();
-
-  return data;
+interface TableProps<T> {
+  context: string;
+  columns: ColumnDef<T>[];
 }
 
-export function Table() {
+export function Table<T extends EntityType>({
+  context,
+  columns,
+}: TableProps<T>) {
   const [pagination] = useState({
     page: 1,
     limit: 10,
   });
 
-  const { data } = useQuery({
-    queryKey: ['categories', pagination],
-    queryFn: fetchCategories.bind(null, pagination),
+  const { data } = useQuery<PaginatedType<T>>({
+    queryKey: [context, pagination],
   });
 
   const table = useReactTable({

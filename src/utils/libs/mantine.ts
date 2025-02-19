@@ -19,6 +19,11 @@ export const theme = createTheme({
         withCloseButton: false,
         closeOnClickOutside: false,
         closeOnEscape: false,
+        styles: {
+          title: {
+            fontWeight: 600,
+          },
+        },
       },
     }),
   },

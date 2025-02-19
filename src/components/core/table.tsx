@@ -46,7 +46,7 @@ async function fetchCategories(
 }
 
 export function Table() {
-  const [pagination, setPagination] = useState({
+  const [pagination] = useState({
     page: 1,
     limit: 10,
   });

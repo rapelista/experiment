@@ -18,23 +18,30 @@ import {
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import { EntityType, PaginatedType } from '~/types/core/entity';
+import { ParamsType } from '~/types/core/uri';
 
 interface TableProps<T> {
   context: string;
+  filters?: ParamsType;
   columns: ColumnDef<T>[];
 }
 
 export function Table<T extends EntityType>({
   context,
+  filters,
   columns,
 }: TableProps<T>) {
-  const [pagination] = useState({
+  const [params] = useState<ParamsType>({
     page: 1,
     limit: 10,
+    orderBy: 'id',
+    orderDirection: 'ASC',
+    search: '',
+    ...filters,
   });
 
   const { data } = useQuery<PaginatedType<T>>({
-    queryKey: [context, pagination],
+    queryKey: [context, params],
   });
 
   const table = useReactTable({

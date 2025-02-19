@@ -2,6 +2,7 @@
 
 import { Button, Group, Stack, Title } from '@mantine/core';
 import { modals } from '@mantine/modals';
+import { Table } from '~/components/core/table';
 
 export default function Page() {
   return (
@@ -22,6 +23,8 @@ export default function Page() {
           Open Category Modal
         </Button>
       </Group>
+
+      <Table />
     </Stack>
   );
 }

@@ -1,4 +1,4 @@
-import { createTheme, Modal } from '@mantine/core';
+import { createTheme, Modal, Table } from '@mantine/core';
 import { ModalsProviderProps } from '@mantine/modals';
 import { CategoryModal } from '~/components/dashboard/categories/modal';
 import { DashboardModal } from '~/components/dashboard/modal';
@@ -24,6 +24,12 @@ export const theme = createTheme({
             fontWeight: 600,
           },
         },
+      },
+    }),
+
+    Table: Table.extend({
+      defaultProps: {
+        striped: true,
       },
     }),
   },

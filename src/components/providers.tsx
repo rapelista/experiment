@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider } from '@mantine/core';
 
 export function Providers({ children }: React.PropsWithChildren) {
   return <MantineProvider>{children}</MantineProvider>;
